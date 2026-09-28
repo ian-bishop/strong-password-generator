@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Strong Password Generator - Free Random Password Tool</title>
 
@@ -16,35 +20,129 @@
 
 <body>
 
-  <main>
-    <h1>Strong Password Generator</h1>
+<main>
+
+  <h1>Strong Password Generator</h1>
+
+  <p>
+    Create a strong random password directly in your browser.
+    Passwords are generated locally and are not sent to a server.
+  </p>
+
+  <div class="generator">
+
+    <div class="password-row">
+      <input
+        type="text"
+        id="password"
+        readonly
+        aria-label="Generated password"
+      >
+
+      <button id="copy">
+        Copy
+      </button>
+    </div>
+
+    <label class="option">
+      Password Length:
+      <input
+        type="number"
+        id="length"
+        min="4"
+        max="128"
+        value="20"
+      >
+    </label>
+
+    <label class="option">
+      <input
+        type="checkbox"
+        id="uppercase"
+        checked
+      >
+      Uppercase letters
+    </label>
+
+    <label class="option">
+      <input
+        type="checkbox"
+        id="lowercase"
+        checked
+      >
+      Lowercase letters
+    </label>
+
+    <label class="option">
+      <input
+        type="checkbox"
+        id="numbers"
+        checked
+      >
+      Numbers
+    </label>
+
+    <label class="option">
+      <input
+        type="checkbox"
+        id="symbols"
+        checked
+      >
+      Symbols
+    </label>
+
+    <button id="generate">
+      Generate Password
+    </button>
+
+  </div>
+
+  <section>
+
+    <h2>How This Password Generator Works</h2>
 
     <p>
-      Generate a strong random password directly in your browser.
+      This password generator uses the Web Crypto API available
+      in modern browsers to generate cryptographically secure
+      random values.
     </p>
 
-    <!-- password generator UI goes here -->
+    <p>
+      Password generation happens entirely inside your browser.
+      Generated passwords are not transmitted to a server.
+    </p>
 
-    <section>
-      <h2>How the password generator works</h2>
-      <p>
-        This tool generates random passwords locally in your browser.
-      </p>
-    </section>
+  </section>
 
-    <section>
-      <h2>More password tools</h2>
-      <p>
-        Visit
-        <a href="https://generatemypassword.com/">
-          GenerateMyPassword.com
-        </a>
-        for additional password generation tools.
-      </p>
-    </section>
+  <section>
 
-  </main>
+    <h2>Creating Strong Passwords</h2>
 
-  <script src="script.js"></script>
+    <p>
+      Longer passwords generally provide greater resistance
+      against brute-force attacks. Using a combination of
+      uppercase letters, lowercase letters, numbers and symbols
+      increases the available character set.
+    </p>
+
+  </section>
+
+  <section>
+
+    <h2>More Password Tools</h2>
+
+    <p>
+      Find additional password generators and password tools at
+      <a href="https://generatemypassword.com/">
+        GenerateMyPassword.com
+      </a>.
+    </p>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+
 </body>
 </html>
