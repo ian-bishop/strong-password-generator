@@ -3,16 +3,49 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Strong Password Generator - Free Random Password Tool</title>
+  <title>Strong Password Generator - Free Secure Random Password Tool</title>
 
   <meta
     name="description"
-    content="Generate strong random passwords with customizable length, numbers, symbols, uppercase and lowercase characters."
+    content="Generate strong, secure random passwords instantly. Choose password length, uppercase and lowercase letters, numbers and symbols. Passwords are generated locally in your browser."
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="author"
+    content="GenerateMyPassword.com"
+  >
+
+  <link
+    rel="canonical"
+    href="https://ian-bishop.github.io/strong-password-generator/"
+  >
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="Strong Password Generator"
+  >
+
+  <meta
+    property="og:description"
+    content="Generate strong random passwords securely in your browser."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:url"
+    content="https://ian-bishop.github.io/strong-password-generator/"
   >
 
   <link rel="stylesheet" href="style.css">
@@ -20,129 +53,356 @@
 
 <body>
 
-<main>
+  <main class="container">
 
-  <h1>Strong Password Generator</h1>
+    <header>
+      <h1>Strong Password Generator</h1>
 
-  <p>
-    Create a strong random password directly in your browser.
-    Passwords are generated locally and are not sent to a server.
-  </p>
+      <p class="intro">
+        Generate a strong, random password securely in your browser.
+        Your passwords are never transmitted or stored.
+      </p>
+    </header>
 
-  <div class="generator">
 
-    <div class="password-row">
-      <input
-        type="text"
-        id="password"
-        readonly
-        aria-label="Generated password"
+    <!-- PASSWORD GENERATOR -->
+
+    <section class="generator" aria-labelledby="generator-heading">
+
+      <h2 id="generator-heading" class="sr-only">
+        Password Generator
+      </h2>
+
+      <div class="password-output">
+
+        <input
+          type="text"
+          id="password"
+          readonly
+          spellcheck="false"
+          aria-label="Generated password"
+        >
+
+        <button
+          id="copy"
+          class="secondary-button"
+          type="button"
+        >
+          Copy
+        </button>
+
+      </div>
+
+
+      <div class="strength-container">
+
+        <div class="strength-header">
+          <span>Password strength</span>
+          <strong id="strengthText">Strong</strong>
+        </div>
+
+        <div
+          class="strength-bar"
+          role="progressbar"
+          aria-label="Password strength"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div id="strengthFill"></div>
+        </div>
+
+        <div id="entropyText" class="entropy"></div>
+
+      </div>
+
+
+      <!-- LENGTH -->
+
+      <div class="length-control">
+
+        <div class="length-header">
+
+          <label for="length">
+            Password Length
+          </label>
+
+          <input
+            type="number"
+            id="length"
+            min="4"
+            max="128"
+            value="20"
+          >
+
+        </div>
+
+        <input
+          type="range"
+          id="lengthSlider"
+          min="4"
+          max="128"
+          value="20"
+          aria-label="Password length"
+        >
+
+      </div>
+
+
+      <!-- OPTIONS -->
+
+      <fieldset class="options">
+
+        <legend>Character Types</legend>
+
+        <label>
+          <input
+            type="checkbox"
+            id="uppercase"
+            checked
+          >
+          Uppercase letters
+          <span>A-Z</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            id="lowercase"
+            checked
+          >
+          Lowercase letters
+          <span>a-z</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            id="numbers"
+            checked
+          >
+          Numbers
+          <span>0-9</span>
+        </label>
+
+
+        <label>
+          <input
+            type="checkbox"
+            id="symbols"
+            checked
+          >
+          Symbols
+          <span>!@#$%</span>
+        </label>
+
+      </fieldset>
+
+
+      <p
+        id="error"
+        class="error"
+        role="alert"
+        aria-live="polite"
+      ></p>
+
+
+      <button
+        id="generate"
+        class="primary-button"
+        type="button"
       >
-
-      <button id="copy">
-        Copy
+        Generate New Password
       </button>
-    </div>
 
-    <label class="option">
-      Password Length:
-      <input
-        type="number"
-        id="length"
-        min="4"
-        max="128"
-        value="20"
-      >
-    </label>
+    </section>
 
-    <label class="option">
-      <input
-        type="checkbox"
-        id="uppercase"
-        checked
-      >
-      Uppercase letters
-    </label>
 
-    <label class="option">
-      <input
-        type="checkbox"
-        id="lowercase"
-        checked
-      >
-      Lowercase letters
-    </label>
+    <!-- INFORMATION -->
 
-    <label class="option">
-      <input
-        type="checkbox"
-        id="numbers"
-        checked
-      >
-      Numbers
-    </label>
+    <section class="content">
 
-    <label class="option">
-      <input
-        type="checkbox"
-        id="symbols"
-        checked
-      >
-      Symbols
-    </label>
+      <h2>How the Password Generator Works</h2>
 
-    <button id="generate">
-      Generate Password
-    </button>
+      <p>
+        This password generator creates random passwords directly
+        inside your web browser. It uses the Web Crypto API and
+        <code>crypto.getRandomValues()</code> to obtain
+        cryptographically strong random values.
+      </p>
 
-  </div>
+      <p>
+        Unlike generators that rely on <code>Math.random()</code>,
+        the Web Crypto API is designed for applications that require
+        stronger randomness.
+      </p>
 
-  <section>
+      <p>
+        The password is generated locally on your device. This page
+        does not need to send the generated password to a server.
+      </p>
 
-    <h2>How This Password Generator Works</h2>
 
-    <p>
-      This password generator uses the Web Crypto API available
-      in modern browsers to generate cryptographically secure
-      random values.
-    </p>
+      <h2>What Makes a Strong Password?</h2>
 
-    <p>
-      Password generation happens entirely inside your browser.
-      Generated passwords are not transmitted to a server.
-    </p>
+      <p>
+        Password strength depends on factors including password
+        length, randomness and the size of the character set used.
+        Increasing the password length generally makes a randomly
+        generated password substantially more difficult to guess
+        through brute-force attempts.
+      </p>
 
-  </section>
+      <p>
+        You can configure this generator to include uppercase
+        letters, lowercase letters, numbers and symbols. When a
+        character type is selected, the generator guarantees that
+        at least one character from that category appears in the
+        generated password.
+      </p>
 
-  <section>
 
-    <h2>Creating Strong Passwords</h2>
+      <h2>How Long Should a Password Be?</h2>
 
-    <p>
-      Longer passwords generally provide greater resistance
-      against brute-force attacks. Using a combination of
-      uppercase letters, lowercase letters, numbers and symbols
-      increases the available character set.
-    </p>
+      <p>
+        For accounts that support longer passwords, a randomly
+        generated password of 16 characters or more provides a
+        large number of possible combinations. This generator
+        defaults to 20 characters and supports passwords up to
+        128 characters.
+      </p>
 
-  </section>
+      <p>
+        Different websites have different password requirements,
+        so you can adjust the length and character types to match
+        the requirements of the account you're creating.
+      </p>
 
-  <section>
 
-    <h2>More Password Tools</h2>
+      <h2>Are Passwords Stored?</h2>
 
-    <p>
-      Find additional password generators and password tools at
-      <a href="https://generatemypassword.com/">
-        GenerateMyPassword.com
-      </a>.
-    </p>
+      <p>
+        No password storage is required for this generator to work.
+        Password generation takes place locally using JavaScript
+        running in your browser.
+      </p>
 
-  </section>
+      <p>
+        Reloading or closing the page removes the currently
+        generated password from the generator.
+      </p>
 
-</main>
 
-<script src="script.js"></script>
+      <h2>More Password Tools</h2>
+
+      <p>
+        Looking for additional password generation options?
+        Visit
+        <a
+          href="https://generatemypassword.com/"
+          rel="noopener"
+        >
+          GenerateMyPassword.com
+        </a>
+        for more password generators and password-related tools.
+      </p>
+
+    </section>
+
+
+    <!-- FAQ -->
+
+    <section class="content faq">
+
+      <h2>Frequently Asked Questions</h2>
+
+
+      <details>
+
+        <summary>
+          Is this password generator secure?
+        </summary>
+
+        <p>
+          The generator uses the browser's Web Crypto API rather
+          than Math.random() for random-number generation.
+          Passwords are generated locally in your browser.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          Does the password leave my computer?
+        </summary>
+
+        <p>
+          The generator does not need to transmit the generated
+          password to a server. Password creation occurs locally
+          through JavaScript running in your browser.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          Can I generate passwords without symbols?
+        </summary>
+
+        <p>
+          Yes. Uncheck the Symbols option before generating the
+          password. You can independently enable or disable
+          uppercase letters, lowercase letters, numbers and
+          symbols.
+        </p>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          What is the maximum password length?
+        </summary>
+
+        <p>
+          This generator supports passwords between 4 and
+          128 characters.
+        </p>
+
+      </details>
+
+    </section>
+
+
+    <footer>
+
+      <p>
+        Open-source password generator.
+        Passwords are generated locally in your browser.
+      </p>
+
+      <p>
+        More tools at
+        <a
+          href="https://generatemypassword.com/"
+          rel="noopener"
+        >
+          GenerateMyPassword.com
+        </a>
+      </p>
+
+    </footer>
+
+  </main>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
