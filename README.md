@@ -7,7 +7,7 @@ cryptographically random passwords.
 
 Try the password generator:
 
-https://YOUR-USERNAME.github.io/strong-password-generator/
+https://ian-bishop.github.io/strong-password-generator/
 
 ## Features
 
