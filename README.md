@@ -303,13 +303,14 @@ Good password practices generally include:
 
 A generated password should also meet the requirements of the website or application where it will be used.
 
-## More Password Tools
+## Related password-security resources
 
-For additional password generators and password-related tools, visit:
+- [GenerateMyPassword.com](https://generatemypassword.com/) — additional browser-based password creation options and guidance.
+- [GenerateMyPassword Chrome extension source](https://github.com/ian-bishop/generatemypassword-extension) — an offline-capable extension that also supports passphrases based on the EFF Large Wordlist.
+- [EFF Dice](https://www.eff.org/dice) — the Electronic Frontier Foundation's guidance on random-word passphrases.
+- [MDN Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) — documentation for cryptographically strong random values in the browser.
 
-**https://generatemypassword.com/**
-
-GenerateMyPassword.com provides additional tools for creating passwords for different requirements and use cases.
+A password generator can help produce unique account credentials, but a reputable password manager and phishing-resistant multifactor authentication remain important safeguards.
 
 ## Contributing
 
